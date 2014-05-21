@@ -44,7 +44,7 @@ default.elasticsearch[:pid_file]  = "#{node.elasticsearch[:pid_path]}/#{node.ela
 # Maximum amount of memory to use is automatically computed as one half of total available memory on the machine.
 # You may choose to set it in your node/role configuration instead.
 #
-if node.normal[:os] = "WINNT"
+if node.normal[:os] == "WINNT"
   allocated_memory                              = "#{(node.kernel.os_info.total_visible_memory_size.to_i * 0.6 ).floor / 1024}m"
   default.elasticsearch[:allocated_memory]      = allocated_memory
   default.elasticsearch[:bootstrap][:mlockall]  = ( node.kernel.os_info.total_visible_memory_size.to_i >= 1048576 ? true : false )
